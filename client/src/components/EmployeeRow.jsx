@@ -6,13 +6,8 @@ import HourPanel from "./HourPanel";
 function EmployeeRow({ employee, onHourClick }) {
   const [expanded, setExpanded] = useState(false);
 
-  function handleHourClick(index) {
-    console.log({
-      employeeId: employee.id,
-      employee: employee.name,
-      hour: index,
-    });
-  }
+  // Zatím vezmeme stav z první hodiny směny
+  const currentStatus = employee.hours[0];
 
   return (
     <>
@@ -20,7 +15,7 @@ function EmployeeRow({ employee, onHourClick }) {
         <span className="employee-name">{employee.name}</span>
 
         <StatusCircle
-          status={employee.status}
+          status={currentStatus}
           size={34}
           onClick={() => setExpanded(!expanded)}
         />

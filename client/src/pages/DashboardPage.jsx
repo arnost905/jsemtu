@@ -7,12 +7,12 @@ function DashboardPage() {
   const [employeeList, setEmployeeList] = useState(employees);
 
   const summary = {
-    work: employeeList.filter((e) => e.status === "work").length,
-    doctor: employeeList.filter((e) => e.status === "doctor").length,
-    holiday: employeeList.filter((e) => e.status === "holiday").length,
-    sickness: employeeList.filter((e) => e.status === "sickness").length,
-    family: employeeList.filter((e) => e.status === "family").length,
-    off: employeeList.filter((e) => e.status === "off").length,
+    work: employeeList.filter((e) => e.hours[0] === "work").length,
+    doctor: employeeList.filter((e) => e.hours[0] === "doctor").length,
+    holiday: employeeList.filter((e) => e.hours[0] === "holiday").length,
+    sickness: employeeList.filter((e) => e.hours[0] === "sickness").length,
+    family: employeeList.filter((e) => e.hours[0] === "family").length,
+    off: employeeList.filter((e) => e.hours[0] === "off").length,
   };
   const STATUS_ORDER = [
     "work",
