@@ -14,9 +14,3 @@
   transform: translateY(-2px);
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
 }
-.hour-panel {
-  display: flex;
-  gap: 8px;
-  margin-top: 12px;
-  padding-left: 20px;
-}

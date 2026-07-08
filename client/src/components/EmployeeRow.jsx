@@ -6,23 +6,28 @@ import HourPanel from "./HourPanel";
 function EmployeeRow({ employee }) {
   const [expanded, setExpanded] = useState(false);
 
+  function handleHourClick(index) {
+    console.log(`${employee.name} - klik na hodinu ${index}`);
+  }
+
   return (
-    <div className="card mb-2">
+    <>
       <div className="employee-row">
         <span className="employee-name">{employee.name}</span>
 
-        <div
+        <StatusCircle
+          status={employee.status}
+          size={34}
           onClick={() => setExpanded(!expanded)}
-          style={{ cursor: "pointer" }}
-        >
-          <StatusCircle
-            size={34}
-            status={employee.status}
-            onClick={() => setExpanded(!expanded)}
-          />
-        </div>
+        />
       </div>
-    </div>
+
+      <HourPanel
+        hours={employee.hours}
+        expanded={expanded}
+        onHourClick={handleHourClick}
+      />
+    </>
   );
 }
 
