@@ -2,9 +2,13 @@ import { useState } from "react";
 import EmployeeRow from "../components/EmployeeRow";
 import "../styles/DashboardPage.css";
 import { employees } from "../data/employees";
+import Header from "../components/Header";
+import SummaryPanel from "../components/SummaryPanel";
+import EmployeeList from "../components/EmployeeList";
 
 function DashboardPage() {
   const [employeeList, setEmployeeList] = useState(employees);
+  const [filter, setFilter] = useState("all");
 
   const summary = {
     work: employeeList.filter((e) => e.hours[0] === "work").length,
@@ -14,6 +18,10 @@ function DashboardPage() {
     family: employeeList.filter((e) => e.hours[0] === "family").length,
     off: employeeList.filter((e) => e.hours[0] === "off").length,
   };
+  const filteredEmployees =
+    filter === "all"
+      ? employeeList
+      : employeeList.filter((employee) => employee.hours[0] === filter);
   const STATUS_ORDER = [
     "work",
     "doctor",
@@ -46,49 +54,26 @@ function DashboardPage() {
   }
   return (
     <div className="dashboard">
-      <h1>⬤ JsemTu</h1>
+      <Header />
 
-      <p className="text-secondary">Přehled dostupnosti týmu</p>
+      <SummaryPanel
+        summary={summary}
+        filter={filter}
+        onFilterChange={setFilter}
+      />
 
-      <div className="dashboard-summary">
-        <div className="summary-item">
-          <span>🟢 Přítomni</span>
-          <strong>{summary.work}</strong>
-        </div>
-
-        <div className="summary-item">
-          <span>🔵 Lékař</span>
-          <strong>{summary.doctor}</strong>
-        </div>
-
-        <div className="summary-item">
-          <span>🟡 Dovolená</span>
-          <strong>{summary.holiday}</strong>
-        </div>
-
-        <div className="summary-item">
-          <span>🔴 Nemoc</span>
-          <strong>{summary.sickness}</strong>
-        </div>
-
-        <div className="summary-item">
-          <span>🟠 Péče</span>
-          <strong>{summary.family}</strong>
-        </div>
-
-        <div className="summary-item">
-          <span>⚪ Mimo směnu</span>
-          <strong>{summary.off}</strong>
-        </div>
-      </div>
-
-      {employeeList.map((employee) => (
-        <EmployeeRow
-          key={employee.id}
-          employee={employee}
-          onHourClick={handleHourClick}
-        />
-      ))}
+      <EmployeeList
+        employees={filteredEmployees}
+        onHourClick={handleHourClick}
+      />
+      <footer className="app-footer">
+        <small>
+          JsemTu <strong>v0.7 DEMO</strong>
+          <br />© 2026 Karel Půček
+          <br />
+          💡 Klepnutím na barevné kolečko změníte stav hodiny.
+        </small>
+      </footer>
     </div>
   );
 }

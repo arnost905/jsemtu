@@ -31,3 +31,23 @@ body {
 .summary-item:not(:last-child) {
   border-bottom: 1px solid #edf2f7;
 }
+.app-footer {
+  margin-top: 40px;
+  padding: 20px 0;
+  text-align: center;
+  color: #6c757d;
+  font-size: 0.85rem;
+}
+.summary-item {
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.summary-item:hover {
+  background: #f8fafc;
+}
+
+.summary-item.active {
+  background: #e7f1ff;
+  border-radius: 10px;
+}
