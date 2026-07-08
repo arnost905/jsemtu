@@ -3,11 +3,15 @@ import "../styles/EmployeeRow.css";
 import { useState } from "react";
 import HourPanel from "./HourPanel";
 
-function EmployeeRow({ employee }) {
+function EmployeeRow({ employee, onHourClick }) {
   const [expanded, setExpanded] = useState(false);
 
   function handleHourClick(index) {
-    console.log(`${employee.name} - klik na hodinu ${index}`);
+    console.log({
+      employeeId: employee.id,
+      employee: employee.name,
+      hour: index,
+    });
   }
 
   return (
@@ -25,7 +29,7 @@ function EmployeeRow({ employee }) {
       <HourPanel
         hours={employee.hours}
         expanded={expanded}
-        onHourClick={handleHourClick}
+        onHourClick={(hourIndex) => onHourClick(employee.id, hourIndex)}
       />
     </>
   );

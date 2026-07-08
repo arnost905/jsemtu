@@ -4,7 +4,7 @@ import "../styles/DashboardPage.css";
 import { employees } from "../data/employees";
 
 function DashboardPage() {
-  const [employeeList] = useState(employees);
+  const [employeeList, setEmployeeList] = useState(employees);
 
   const summary = {
     work: employeeList.filter((e) => e.status === "work").length,
@@ -14,7 +14,36 @@ function DashboardPage() {
     family: employeeList.filter((e) => e.status === "family").length,
     off: employeeList.filter((e) => e.status === "off").length,
   };
+  const STATUS_ORDER = [
+    "work",
+    "doctor",
+    "holiday",
+    "sickness",
+    "family",
+    "off",
+  ];
+  function handleHourClick(employeeId, hourIndex) {
+    setEmployeeList((prev) =>
+      prev.map((employee) => {
+        if (employee.id !== employeeId) {
+          return employee;
+        }
 
+        const newHours = [...employee.hours];
+
+        const currentIndex = STATUS_ORDER.indexOf(newHours[hourIndex]);
+
+        const nextIndex = (currentIndex + 1) % STATUS_ORDER.length;
+
+        newHours[hourIndex] = STATUS_ORDER[nextIndex];
+
+        return {
+          ...employee,
+          hours: newHours,
+        };
+      }),
+    );
+  }
   return (
     <div className="dashboard">
       <h1>⬤ JsemTu</h1>
@@ -54,7 +83,11 @@ function DashboardPage() {
       </div>
 
       {employeeList.map((employee) => (
-        <EmployeeRow key={employee.id} employee={employee} />
+        <EmployeeRow
+          key={employee.id}
+          employee={employee}
+          onHourClick={handleHourClick}
+        />
       ))}
     </div>
   );
