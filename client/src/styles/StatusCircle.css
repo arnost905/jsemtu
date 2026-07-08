@@ -1,0 +1,23 @@
+.status-circle {
+  border: none;
+
+  border-radius: 50%;
+
+  cursor: pointer;
+
+  transition: all 0.18s ease;
+
+  flex-shrink: 0;
+}
+
+.status-circle:hover {
+  transform: scale(1.1);
+}
+
+.status-circle:active {
+  transform: scale(0.92);
+}
+
+.status-circle:focus {
+  outline: none;
+}

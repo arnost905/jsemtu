@@ -1,0 +1,5 @@
+.hour-panel {
+  display: flex;
+  gap: 8px;
+  padding: 10px 0 10px 48px;
+}

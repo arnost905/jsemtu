@@ -1,0 +1,8 @@
+body {
+  background: #eef2f7;
+}
+.dashboard {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 1rem;
+}
