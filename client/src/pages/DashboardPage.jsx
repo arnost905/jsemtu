@@ -10,19 +10,42 @@ function DashboardPage() {
   const [employeeList, setEmployeeList] = useState(employees);
   const [expandedEmployee, setExpandedEmployee] = useState(null);
   const [filter, setFilter] = useState("all");
+  const [selectedHour, setSelectedHour] = useState(new Date().getHours());
 
+  function getCurrentStatus(employee, hour) {
+    const index = hour - employee.shiftStart;
+
+    if (index < 0 || index >= employee.hours.length) {
+      return "off";
+    }
+
+    return employee.hours[index];
+  }
   const summary = {
-    work: employeeList.filter((e) => e.hours[0] === "work").length,
-    doctor: employeeList.filter((e) => e.hours[0] === "doctor").length,
-    holiday: employeeList.filter((e) => e.hours[0] === "holiday").length,
-    sickness: employeeList.filter((e) => e.hours[0] === "sickness").length,
-    family: employeeList.filter((e) => e.hours[0] === "family").length,
-    off: employeeList.filter((e) => e.hours[0] === "off").length,
+    work: employeeList.filter(
+      (e) => getCurrentStatus(e, selectedHour) === "work",
+    ).length,
+    doctor: employeeList.filter(
+      (e) => getCurrentStatus(e, selectedHour) === "doctor",
+    ).length,
+    holiday: employeeList.filter(
+      (e) => getCurrentStatus(e, selectedHour) === "holiday",
+    ).length,
+    sickness: employeeList.filter(
+      (e) => getCurrentStatus(e, selectedHour) === "sickness",
+    ).length,
+    family: employeeList.filter(
+      (e) => getCurrentStatus(e, selectedHour) === "family",
+    ).length,
+    off: employeeList.filter((e) => getCurrentStatus(e, selectedHour) === "off")
+      .length,
   };
   const filteredEmployees =
     filter === "all"
       ? employeeList
-      : employeeList.filter((employee) => employee.hours[0] === filter);
+      : employeeList.filter(
+          (employee) => getCurrentStatus(employee, selectedHour) === filter,
+        );
   const STATUS_ORDER = [
     "work",
     "doctor",
@@ -61,10 +84,13 @@ function DashboardPage() {
         summary={summary}
         filter={filter}
         onFilterChange={setFilter}
+        selectedHour={selectedHour}
+        setSelectedHour={setSelectedHour}
       />
 
       <EmployeeList
         employees={filteredEmployees}
+        currentHour={selectedHour}
         onHourClick={handleHourClick}
         expandedEmployee={expandedEmployee}
         setExpandedEmployee={setExpandedEmployee}
@@ -74,7 +100,10 @@ function DashboardPage() {
           JsemTu <strong>v0.8-alfa</strong>
           <br />© 2026 Karel Půček
           <br />
-          💡 <a href="mailto:arnost905@gmail.com">Pošli prosím Tě připomínky a návrhy na vylepšení.</a>
+          💡{" "}
+          <a href="mailto:arnost905@gmail.com">
+            Pošli prosím Tě připomínky a návrhy na vylepšení.
+          </a>
         </small>
       </footer>
     </div>

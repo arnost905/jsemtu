@@ -1,12 +1,15 @@
 .hour-panel {
   margin-left: 52px;
   margin-bottom: 12px;
-  animation: expand 0.2s ease-out;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin; /* Firefox */
 }
 
 .hour-circles {
   display: flex;
   gap: 10px;
+  width: max-content;
 }
 
 @keyframes expand {

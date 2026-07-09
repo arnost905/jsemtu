@@ -3,12 +3,20 @@ import "../styles/EmployeeRow.css";
 //import { useState } from "react";
 import HourPanel from "./HourPanel";
 
-function EmployeeRow({ employee, onHourClick, expanded, onToggle }) {
+function EmployeeRow({
+  employee,
+  currentHour,
+  onHourClick,
+  expanded,
+  onToggle,
+}) {
   //const [expanded, setExpanded] = useState(false);
 
   // Zatím vezmeme stav z první hodiny směny
-  const currentStatus = employee.hours[0];
-  //*<div className="employee-row">*/
+  const index = currentHour - employee.shiftStart;
+
+  const currentStatus =
+    index >= 0 && index < employee.hours.length ? employee.hours[index] : "off";
   return (
     <>
       <div
