@@ -6,6 +6,7 @@ import HourPanel from "./HourPanel";
 function EmployeeRow({
   employee,
   currentHour,
+  currentUser,
   onHourClick,
   expanded,
   onToggle,
@@ -17,6 +18,10 @@ function EmployeeRow({
 
   const currentStatus =
     index >= 0 && index < employee.hours.length ? employee.hours[index] : "off";
+  const canEdit =
+    currentUser.role === "admin" ||
+    currentUser.role === "manager" ||
+    currentUser.id === employee.id;
   return (
     <>
       <div
@@ -36,7 +41,11 @@ function EmployeeRow({
         hours={employee.hours}
         shiftStart={employee.shiftStart}
         expanded={expanded}
-        onHourClick={(hourIndex) => onHourClick(employee.id, hourIndex)}
+        onHourClick={
+          canEdit
+            ? (hourIndex) => onHourClick(employee.id, hourIndex)
+            : undefined
+        }
       />
     </>
   );

@@ -3,6 +3,7 @@ import EmployeeRow from "./EmployeeRow";
 function EmployeeList({
   employees,
   currentHour,
+  currentUser,
   onHourClick,
   expandedEmployee,
   setExpandedEmployee,
@@ -14,6 +15,7 @@ function EmployeeList({
           key={employee.id}
           employee={employee}
           currentHour={currentHour}
+          currentUser={currentUser}
           onHourClick={onHourClick}
           expanded={expandedEmployee === employee.id}
           onToggle={() =>

@@ -116,6 +116,7 @@ function DashboardPage({ currentUser, onLogout }) {
       <EmployeeList
         employees={filteredEmployees}
         currentHour={selectedHour}
+        currentUser={currentUser}
         onHourClick={handleHourClick}
         expandedEmployee={expandedEmployee}
         setExpandedEmployee={setExpandedEmployee}

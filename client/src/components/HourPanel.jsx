@@ -12,7 +12,7 @@ function HourPanel({ hours, shiftStart, expanded, onHourClick }) {
             key={index}
             status={status}
             hour={shiftStart + index}
-            onClick={() => onHourClick(index)}
+            onClick={() => onHourClick?.(index)}
           />
         ))}
       </div>
