@@ -22,6 +22,7 @@ function EmployeeRow({
     currentUser.role === "admin" ||
     currentUser.role === "manager" ||
     currentUser.id === employee.id;
+  console.log(employee.name, currentUser, canEdit);
   return (
     <>
       <div
