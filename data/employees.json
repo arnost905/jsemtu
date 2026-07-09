@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "name": "Karel TEST",
+    "shiftStart": 8,
+    "shiftLength": 8,
+    "hours": ["work", "work", "work", "work", "work", "work", "work", "work"]
+  },
+
+  {
+    "id": 2,
+    "name": "Pepa",
+    "shiftStart": 6,
+    "shiftLength": 12,
+    "hours": [
+      "doctor",
+      "doctor",
+      "doctor",
+      "doctor",
+      "doctor",
+      "doctor",
+      "doctor",
+      "doctor",
+      "doctor",
+      "doctor",
+      "doctor",
+      "doctor"
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Lenka",
+    "shiftStart": 10,
+    "shiftLength": 6,
+    "hours": ["holiday", "holiday", "holiday", "holiday", "holiday", "holiday"]
+  }
+]

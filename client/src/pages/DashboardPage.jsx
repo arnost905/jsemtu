@@ -1,16 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import EmployeeRow from "../components/EmployeeRow";
 import "../styles/DashboardPage.css";
-import { employees } from "../data/employees";
 import Header from "../components/Header";
 import SummaryPanel from "../components/SummaryPanel";
 import EmployeeList from "../components/EmployeeList";
 
 function DashboardPage() {
-  const [employeeList, setEmployeeList] = useState(employees);
+  const [employeeList, setEmployeeList] = useState([]);
   const [expandedEmployee, setExpandedEmployee] = useState(null);
   const [filter, setFilter] = useState("all");
   const [selectedHour, setSelectedHour] = useState(new Date().getHours());
+
+  useEffect(() => {
+    fetch("http://localhost/JsemTu/api/employees.php")
+      .then((response) => response.json())
+      .then((data) => setEmployeeList(data))
+      .catch((error) => console.error("Chyba při načítání JSON:", error));
+  }, []);
 
   function getCurrentStatus(employee, hour) {
     const index = hour - employee.shiftStart;
