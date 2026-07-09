@@ -12,7 +12,11 @@ function DashboardPage() {
   const [selectedHour, setSelectedHour] = useState(new Date().getHours());
 
   useEffect(() => {
-    fetch("http://localhost/JsemTu/api/employees.php")
+    // Vývoj s PHP
+    //fetch("http://localhost/JsemTu/api/employees.php")
+
+    // Demo (Vercel)
+    fetch("/data/employees.json")
       .then((response) => response.json())
       .then((data) => setEmployeeList(data))
       .catch((error) => console.error("Chyba při načítání JSON:", error));
