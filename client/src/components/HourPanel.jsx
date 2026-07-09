@@ -1,7 +1,7 @@
 import HourCircle from "./HourCircle";
 import "../styles/HourPanel.css";
 
-function HourPanel({ hours, expanded, onHourClick }) {
+function HourPanel({ hours, shiftStart, expanded, onHourClick }) {
   if (!expanded) return null;
 
   return (
@@ -11,7 +11,7 @@ function HourPanel({ hours, expanded, onHourClick }) {
           <HourCircle
             key={index}
             status={status}
-            hour={8 + index}
+            hour={shiftStart + index}
             onClick={() => onHourClick(index)}
           />
         ))}

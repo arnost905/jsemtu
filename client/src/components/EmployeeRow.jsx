@@ -26,6 +26,7 @@ function EmployeeRow({ employee, onHourClick, expanded, onToggle }) {
 
       <HourPanel
         hours={employee.hours}
+        shiftStart={employee.shiftStart}
         expanded={expanded}
         onHourClick={(hourIndex) => onHourClick(employee.id, hourIndex)}
       />
