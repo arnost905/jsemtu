@@ -1,10 +1,10 @@
 import StatusCircle from "./StatusCircle";
 import "../styles/EmployeeRow.css";
-import { useState } from "react";
+//import { useState } from "react";
 import HourPanel from "./HourPanel";
 
-function EmployeeRow({ employee, onHourClick }) {
-  const [expanded, setExpanded] = useState(false);
+function EmployeeRow({ employee, onHourClick, expanded, onToggle }) {
+  //const [expanded, setExpanded] = useState(false);
 
   // Zatím vezmeme stav z první hodiny směny
   const currentStatus = employee.hours[0];
@@ -14,11 +14,7 @@ function EmployeeRow({ employee, onHourClick }) {
       <div className="employee-row">
         <span className="employee-name">{employee.name}</span>
 
-        <StatusCircle
-          status={currentStatus}
-          size={34}
-          onClick={() => setExpanded(!expanded)}
-        />
+        <StatusCircle status={currentStatus} size={34} onClick={onToggle} />
       </div>
 
       <HourPanel

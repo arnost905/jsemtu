@@ -8,6 +8,7 @@ import EmployeeList from "../components/EmployeeList";
 
 function DashboardPage() {
   const [employeeList, setEmployeeList] = useState(employees);
+  const [expandedEmployee, setExpandedEmployee] = useState(null);
   const [filter, setFilter] = useState("all");
 
   const summary = {
@@ -65,10 +66,12 @@ function DashboardPage() {
       <EmployeeList
         employees={filteredEmployees}
         onHourClick={handleHourClick}
+        expandedEmployee={expandedEmployee}
+        setExpandedEmployee={setExpandedEmployee}
       />
       <footer className="app-footer">
         <small>
-          JsemTu <strong>v0.7 DEMO</strong>
+          JsemTu <strong>v0.7-alfa</strong>
           <br />© 2026 Karel Půček
           <br />
           💡 Klepnutím na barevné kolečko změníte stav hodiny.

@@ -1,6 +1,11 @@
 import EmployeeRow from "./EmployeeRow";
 
-function EmployeeList({ employees, onHourClick }) {
+function EmployeeList({
+  employees,
+  onHourClick,
+  expandedEmployee,
+  setExpandedEmployee,
+}) {
   return (
     <>
       {employees.map((employee) => (
@@ -8,6 +13,12 @@ function EmployeeList({ employees, onHourClick }) {
           key={employee.id}
           employee={employee}
           onHourClick={onHourClick}
+          expanded={expandedEmployee === employee.id}
+          onToggle={() =>
+            setExpandedEmployee(
+              expandedEmployee === employee.id ? null : employee.id,
+            )
+          }
         />
       ))}
     </>
