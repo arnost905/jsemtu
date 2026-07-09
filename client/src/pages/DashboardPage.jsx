@@ -5,7 +5,7 @@ import Header from "../components/Header";
 import SummaryPanel from "../components/SummaryPanel";
 import EmployeeList from "../components/EmployeeList";
 
-function DashboardPage() {
+function DashboardPage({ currentUser, onLogout }) {
   const [employeeList, setEmployeeList] = useState([]);
   const [expandedEmployee, setExpandedEmployee] = useState(null);
   const [filter, setFilter] = useState("all");
@@ -86,10 +86,25 @@ function DashboardPage() {
       }),
     );
   }
+  const roleNames = {
+    admin: "Administrátor",
+    manager: "Vedoucí",
+    employee: "Zaměstnanec",
+    viewer: "Pouze náhled",
+  };
   return (
     <div className="dashboard">
       <Header />
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <div>
+          👤 <strong>{currentUser.name} ● </strong>
+          <small> {roleNames[currentUser.role]}</small>
+        </div>
 
+        <button className="btn btn-outline-secondary btn-sm" onClick={onLogout}>
+          Odhlásit
+        </button>
+      </div>
       <SummaryPanel
         summary={summary}
         filter={filter}
@@ -107,7 +122,7 @@ function DashboardPage() {
       />
       <footer className="app-footer">
         <small>
-          JsemTu <strong>v0.8-alfa</strong>
+          JsemTu <strong>v0.9-alfa</strong>
           <br />© 2026 Karel Půček
           <br />
           💡{" "}

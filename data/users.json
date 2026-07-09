@@ -2,15 +2,71 @@
   {
     "id": 1,
     "username": "karel",
-    "password": "1234",
-    "name": "Karel Půček",
+    "password": "demo",
+    "name": "Karel",
     "role": "admin"
   },
   {
     "id": 2,
-    "username": "pepa",
-    "password": "1234",
-    "name": "Pepa Novák",
+    "username": "pavel",
+    "password": "demo",
+    "name": "Pavel",
+    "role": "manager"
+  },
+  {
+    "id": 3,
+    "username": "jiri",
+    "password": "demo",
+    "name": "Jiří",
+    "role": "employee"
+  },
+  {
+    "id": 4,
+    "username": "pavlina",
+    "password": "demo",
+    "name": "Pavlína",
+    "role": "employee"
+  },
+  {
+    "id": 5,
+    "username": "marta",
+    "password": "demo",
+    "name": "Marta",
+    "role": "employee"
+  },
+  {
+    "id": 6,
+    "username": "martin",
+    "password": "demo",
+    "name": "Martin",
+    "role": "employee"
+  },
+  {
+    "id": 7,
+    "username": "vendula",
+    "password": "demo",
+    "name": "Vendula",
+    "role": "employee"
+  },
+  {
+    "id": 8,
+    "username": "ondrej",
+    "password": "demo",
+    "name": "Ondřej",
+    "role": "employee"
+  },
+  {
+    "id": 9,
+    "username": "recepce",
+    "password": "demo",
+    "name": "Recepce",
+    "role": "viewer"
+  },
+  {
+    "id": 99,
+    "username": "demo",
+    "password": "demo",
+    "name": "Demo účet",
     "role": "employee"
   }
 ]

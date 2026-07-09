@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "name": "Karel TEST",
+    "name": "Karel",
     "shiftStart": 8,
     "shiftLength": 8,
     "hours": ["work", "work", "work", "work", "work", "work", "work", "work"]
@@ -9,7 +9,7 @@
 
   {
     "id": 2,
-    "name": "Pepa",
+    "name": "Pavel",
     "shiftStart": 6,
     "shiftLength": 12,
     "hours": [
@@ -29,9 +29,80 @@
   },
   {
     "id": 3,
-    "name": "Lenka",
-    "shiftStart": 10,
-    "shiftLength": 6,
-    "hours": ["holiday", "holiday", "holiday", "holiday", "holiday", "holiday"]
+    "name": "Jiří",
+    "shiftStart": 6,
+    "shiftLength": 8,
+    "hours": [
+      "holiday",
+      "holiday",
+      "holiday",
+      "holiday",
+      "holiday",
+      "holiday",
+      "holiday",
+      "holiday"
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Pavlína",
+    "shiftStart": 9,
+    "shiftLength": 8,
+    "hours": ["work", "work", "work", "work", "work", "work", "work", "work"]
+  },
+  {
+    "id": 5,
+    "name": "Marta",
+    "shiftStart": 9,
+    "shiftLength": 8,
+    "hours": ["work", "work", "work", "work", "work", "work", "work", "work"]
+  },
+  {
+    "id": 6,
+    "name": "Martin",
+    "shiftStart": 9,
+    "shiftLength": 8,
+    "hours": ["work", "work", "work", "work", "work", "work", "work", "work"]
+  },
+  {
+    "id": 7,
+    "name": "Vendula",
+    "shiftStart": 9,
+    "shiftLength": 8,
+    "hours": ["work", "work", "work", "work", "work", "work", "work", "work"]
+  },
+  {
+    "id": 8,
+    "name": "Ondřej",
+    "shiftStart": 9,
+    "shiftLength": 8,
+    "hours": ["work", "work", "work", "work", "work", "work", "work", "work"]
+  },
+  {
+    "id": 9,
+    "name": "Recepce",
+    "shiftStart": 6,
+    "shiftLength": 12,
+    "hours": [
+      "work",
+      "work",
+      "work",
+      "work",
+      "work",
+      "work",
+      "work",
+      "work",
+      "work",
+      "work",
+      "work",
+      "work"
+    ]
+  },
+  {
+    "id": 99,
+    "name": "Demo účet",
+    "shiftStart": 9,
+    "shiftLength": 8,
+    "hours": ["work", "work", "work", "work", "work", "work", "work", "work"]
   }
 ]

@@ -1,0 +1,46 @@
+<?php
+
+header("Access-Control-Allow-Origin: http://localhost:5173");
+header("Access-Control-Allow-Methods: POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
+header("Content-Type: application/json; charset=utf-8");
+
+if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
+    exit;
+}
+
+$file = __DIR__ . "/../data/users.json";
+
+$users = json_decode(file_get_contents($file), true);
+
+$data = json_decode(file_get_contents("php://input"), true);
+
+
+
+$username = $data["username"] ?? "";
+$password = $data["password"] ?? "";
+
+foreach ($users as $user) {
+
+    if (
+        $user["username"] === $username &&
+        $user["password"] === $password
+    ) {
+
+        echo json_encode([
+            "success" => true,
+            "user" => [
+                "id" => $user["id"],
+                "name" => $user["name"],
+                "role" => $user["role"]
+            ]
+        ]);
+
+        exit;
+    }
+}
+
+echo json_encode([
+    "success" => false,
+    "message" => "Neplatné přihlašovací údaje."
+]);
