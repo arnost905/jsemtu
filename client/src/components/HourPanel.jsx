@@ -6,13 +6,16 @@ function HourPanel({ hours, expanded, onHourClick }) {
 
   return (
     <div className="hour-panel">
-      {hours.map((status, index) => (
-        <HourCircle
-          key={index}
-          status={status}
-          onClick={() => onHourClick(index)}
-        />
-      ))}
+      <div className="hour-circles">
+        {hours.map((status, index) => (
+          <HourCircle
+            key={index}
+            status={status}
+            hour={8 + index}
+            onClick={() => onHourClick(index)}
+          />
+        ))}
+      </div>
     </div>
   );
 }

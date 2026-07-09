@@ -8,13 +8,20 @@ function EmployeeRow({ employee, onHourClick, expanded, onToggle }) {
 
   // Zatím vezmeme stav z první hodiny směny
   const currentStatus = employee.hours[0];
-
+  //*<div className="employee-row">*/
   return (
     <>
-      <div className="employee-row">
-        <span className="employee-name">{employee.name}</span>
+      <div
+        className={`employee-row ${expanded ? "expanded" : ""}`}
+        onClick={onToggle}
+      >
+        <div className="employee-left">
+          <span className="expand-icon">▶</span>
 
-        <StatusCircle status={currentStatus} size={34} onClick={onToggle} />
+          <span className="employee-name">{employee.name}</span>
+        </div>
+
+        <StatusCircle status={currentStatus} size={34} />
       </div>
 
       <HourPanel

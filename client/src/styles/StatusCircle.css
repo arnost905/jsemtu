@@ -1,12 +1,8 @@
 .status-circle {
   border: none;
-
   border-radius: 50%;
-
   cursor: pointer;
-
   transition: all 0.18s ease;
-
   flex-shrink: 0;
 }
 
@@ -20,4 +16,12 @@
 
 .status-circle:focus {
   outline: none;
+}
+.status-circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 0.72rem;
+  font-weight: 700;
 }

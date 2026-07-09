@@ -1,45 +1,22 @@
 .hour-panel {
   margin-left: 52px;
-
   margin-bottom: 12px;
-
   animation: expand 0.2s ease-out;
-}
-
-.hour-labels {
-  display: flex;
-
-  gap: 10px;
-
-  margin-bottom: 6px;
-}
-
-.hour-labels span {
-  width: 26px;
-
-  text-align: center;
-
-  font-size: 0.75rem;
-
-  color: #64748b;
 }
 
 .hour-circles {
   display: flex;
-
   gap: 10px;
 }
 
 @keyframes expand {
   from {
     opacity: 0;
-
     transform: translateY(-6px);
   }
 
   to {
     opacity: 1;
-
     transform: translateY(0);
   }
 }

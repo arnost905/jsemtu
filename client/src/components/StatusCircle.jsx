@@ -9,7 +9,7 @@ const statusColors = {
   off: "#cbd5e1",
 };
 
-function StatusCircle({ status = "work", size = 34, onClick }) {
+function StatusCircle({ status = "work", hour, size = 34, onClick }) {
   return (
     <button
       className="status-circle"
@@ -17,9 +17,11 @@ function StatusCircle({ status = "work", size = 34, onClick }) {
       style={{
         width: `${size}px`,
         height: `${size}px`,
-        backgroundColor: statusColors[status] || statusColors.off,
+        backgroundColor: statusColors[status],
       }}
-    />
+    >
+      {hour}
+    </button>
   );
 }
 

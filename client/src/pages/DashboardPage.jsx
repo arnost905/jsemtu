@@ -71,10 +71,10 @@ function DashboardPage() {
       />
       <footer className="app-footer">
         <small>
-          JsemTu <strong>v0.7-alfa</strong>
+          JsemTu <strong>v0.8-alfa</strong>
           <br />© 2026 Karel Půček
           <br />
-          💡 Klepnutím na barevné kolečko změníte stav hodiny.
+          💡 <a href="mailto:arnost905@gmail.com">Pošli prosím Tě připomínky a návrhy na vylepšení.</a>
         </small>
       </footer>
     </div>

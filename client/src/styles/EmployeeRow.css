@@ -14,3 +14,22 @@
   transform: translateY(-2px);
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
 }
+.employee-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.expand-icon {
+  width: 20px;
+  text-align: center;
+  color: #64748b;
+  font-weight: bold;
+  transition: transform 0.2s ease;
+}
+.employee-row.expanded {
+  background: #f0fdf4;
+}
+.employee-row.expanded .expand-icon {
+  transform: rotate(90deg);
+}
