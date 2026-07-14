@@ -14,7 +14,7 @@ function EmployeeRow({
   //const [expanded, setExpanded] = useState(false);
 
   // Zatím vezmeme stav z první hodiny směny
-  const index = currentHour - employee.shiftStart;
+  const index = currentHour - 7;
 
   const currentStatus =
     index >= 0 && index < employee.hours.length ? employee.hours[index] : "off";
@@ -22,7 +22,6 @@ function EmployeeRow({
     currentUser.role === "admin" ||
     currentUser.role === "manager" ||
     currentUser.id === employee.id;
-  console.log(employee.name, currentUser, canEdit);
   return (
     <>
       <div
@@ -40,7 +39,6 @@ function EmployeeRow({
 
       <HourPanel
         hours={employee.hours}
-        shiftStart={employee.shiftStart}
         expanded={expanded}
         onHourClick={
           canEdit

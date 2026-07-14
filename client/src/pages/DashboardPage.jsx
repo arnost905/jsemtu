@@ -4,6 +4,7 @@ import "../styles/DashboardPage.css";
 import Header from "../components/Header";
 import SummaryPanel from "../components/SummaryPanel";
 import EmployeeList from "../components/EmployeeList";
+import API_URL from "../config";
 
 function DashboardPage({ currentUser, onLogout }) {
   const [employeeList, setEmployeeList] = useState([]);
@@ -11,19 +12,39 @@ function DashboardPage({ currentUser, onLogout }) {
   const [filter, setFilter] = useState("all");
   const [selectedHour, setSelectedHour] = useState(new Date().getHours());
 
-  useEffect(() => {
-    // Vývoj s PHP
-    //fetch("http://localhost/JsemTu/api/employees.php")
-
-    // Demo (Vercel)
-    fetch("/data/employees.json")
+  function loadEmployees() {
+    fetch(`${API_URL}/employees.php`)
       .then((response) => response.json())
       .then((data) => setEmployeeList(data))
-      .catch((error) => console.error("Chyba při načítání JSON:", error));
-  }, []);
+      .catch((error) => console.error(error));
+  }
+  useEffect(() => {
+    loadEmployees();
 
+    const timer = setInterval(loadEmployees, 15000);
+
+    return () => clearInterval(timer);
+  }, []);
+  function saveEmployees(data) {
+    fetch(`${API_URL}/employees.php`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        if (!result.success) {
+          console.error("Nepodařilo se uložit změny.");
+        }
+      })
+      .catch((error) => {
+        console.error("Chyba při ukládání:", error);
+      });
+  }
   function getCurrentStatus(employee, hour) {
-    const index = hour - employee.shiftStart;
+    const index = hour - 7;
 
     if (index < 0 || index >= employee.hours.length) {
       return "off";
@@ -31,6 +52,7 @@ function DashboardPage({ currentUser, onLogout }) {
 
     return employee.hours[index];
   }
+
   const summary = {
     work: employeeList.filter(
       (e) => getCurrentStatus(e, selectedHour) === "work",
@@ -65,8 +87,8 @@ function DashboardPage({ currentUser, onLogout }) {
     "off",
   ];
   function handleHourClick(employeeId, hourIndex) {
-    setEmployeeList((prev) =>
-      prev.map((employee) => {
+    setEmployeeList((prev) => {
+      const updated = prev.map((employee) => {
         if (employee.id !== employeeId) {
           return employee;
         }
@@ -74,7 +96,6 @@ function DashboardPage({ currentUser, onLogout }) {
         const newHours = [...employee.hours];
 
         const currentIndex = STATUS_ORDER.indexOf(newHours[hourIndex]);
-
         const nextIndex = (currentIndex + 1) % STATUS_ORDER.length;
 
         newHours[hourIndex] = STATUS_ORDER[nextIndex];
@@ -83,8 +104,13 @@ function DashboardPage({ currentUser, onLogout }) {
           ...employee,
           hours: newHours,
         };
-      }),
-    );
+      });
+
+      // Uložení na server
+      saveEmployees(updated);
+
+      return updated;
+    });
   }
   const roleNames = {
     admin: "Administrátor",
@@ -123,7 +149,7 @@ function DashboardPage({ currentUser, onLogout }) {
       />
       <footer className="app-footer">
         <small>
-          JsemTu <strong>v0.9-alfa</strong>
+          JsemTu <strong>v1.0-alfa</strong>
           <br />© 2026 Karel Půček
           <br />
           💡{" "}
