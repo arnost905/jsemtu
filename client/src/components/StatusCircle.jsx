@@ -6,6 +6,7 @@ const statusColors = {
   holiday: "#facc15",
   sickness: "#ef4444",
   family: "#fb923c",
+  businessTrip: "#6f42c1",
   off: "#cbd5e1",
 };
 

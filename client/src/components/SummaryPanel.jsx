@@ -9,6 +9,7 @@ const items = [
   { key: "holiday", label: "Dovolená" },
   { key: "sickness", label: "Nemoc" },
   { key: "family", label: "Péče" },
+  { key: "businessTrip", label: "Služební cesta" },
   { key: "off", label: "Mimo směnu" },
 ];
 

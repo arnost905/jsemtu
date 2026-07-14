@@ -11,6 +11,7 @@ function DashboardPage({ currentUser, onLogout }) {
   const [expandedEmployee, setExpandedEmployee] = useState(null);
   const [filter, setFilter] = useState("all");
   const [selectedHour, setSelectedHour] = useState(new Date().getHours());
+  const [warning, setWarning] = useState("");
 
   function loadEmployees() {
     fetch(`${API_URL}/employees.php`)
@@ -69,6 +70,9 @@ function DashboardPage({ currentUser, onLogout }) {
     family: employeeList.filter(
       (e) => getCurrentStatus(e, selectedHour) === "family",
     ).length,
+    businessTrip: employeeList.filter(
+      (e) => getCurrentStatus(e, selectedHour) === "businessTrip",
+    ).length,
     off: employeeList.filter((e) => getCurrentStatus(e, selectedHour) === "off")
       .length,
   };
@@ -84,8 +88,25 @@ function DashboardPage({ currentUser, onLogout }) {
     "holiday",
     "sickness",
     "family",
+    "businessTrip",
     "off",
   ];
+
+  function countHours(hours) {
+    return hours.filter((status) => status !== "off").length;
+  }
+
+  function countStatuses(hours) {
+    return {
+      work: hours.filter((h) => h === "work").length,
+      doctor: hours.filter((h) => h === "doctor").length,
+      holiday: hours.filter((h) => h === "holiday").length,
+      sickness: hours.filter((h) => h === "sickness").length,
+      family: hours.filter((h) => h === "family").length,
+      businessTrip: hours.filter((h) => h === "businessTrip").length,
+    };
+  }
+
   function handleHourClick(employeeId, hourIndex) {
     setEmployeeList((prev) => {
       const updated = prev.map((employee) => {
@@ -100,6 +121,16 @@ function DashboardPage({ currentUser, onLogout }) {
 
         newHours[hourIndex] = STATUS_ORDER[nextIndex];
 
+        const totalHours = countHours(newHours);
+
+        if (totalHours > 8) {
+          setWarning(`⚠ ${employee.name} má zadáno ${totalHours} hodin.`);
+
+          setTimeout(() => {
+            setWarning("");
+          }, 3000);
+        }
+
         return {
           ...employee,
           hours: newHours,
@@ -112,6 +143,23 @@ function DashboardPage({ currentUser, onLogout }) {
       return updated;
     });
   }
+
+  function sendReport() {
+    fetch(`${API_URL}/send_report.php`)
+      .then((response) => response.json())
+      .then((result) => {
+        if (result.success) {
+          alert("✅ Denní přehled byl úspěšně odeslán.");
+        } else {
+          alert("❌ Odeslání se nezdařilo.");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        alert("❌ Nepodařilo se spojit se serverem.");
+      });
+  }
+
   const roleNames = {
     admin: "Administrátor",
     manager: "Vedoucí",
@@ -121,15 +169,29 @@ function DashboardPage({ currentUser, onLogout }) {
   return (
     <div className="dashboard">
       <Header />
+      {warning && (
+        <div className="alert alert-warning text-center">{warning}</div>
+      )}
       <div className="d-flex justify-content-between align-items-center mb-3">
         <div>
           👤 <strong>{currentUser.name} ● </strong>
           <small> {roleNames[currentUser.role]}</small>
         </div>
 
-        <button className="btn btn-outline-secondary btn-sm" onClick={onLogout}>
-          Odhlásit
-        </button>
+        <div className="d-flex gap-2">
+          {(currentUser.role === "admin" || currentUser.role === "manager") && (
+            <button className="btn btn-success btn-sm" onClick={sendReport}>
+              📧 Odeslat denní přehled
+            </button>
+          )}
+
+          <button
+            className="btn btn-outline-secondary btn-sm"
+            onClick={onLogout}
+          >
+            Odhlásit
+          </button>
+        </div>
       </div>
       <SummaryPanel
         summary={summary}

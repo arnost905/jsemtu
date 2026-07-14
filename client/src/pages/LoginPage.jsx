@@ -66,9 +66,6 @@ function LoginPage({ onLogin }) {
             <button className="btn btn-primary w-100">Přihlásit</button>
           </form>
           <br />
-          <small>
-            <strong>Demo účet:</strong> demo / demo
-          </small>
         </div>
       </div>
     </div>

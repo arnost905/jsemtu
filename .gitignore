@@ -17,3 +17,10 @@ npm-debug.log*
 # Dočasné soubory
 Thumbs.db
 .DS_Store
+
+# Soubor s hesly
+# Lokální konfigurace
+api/config.php
+
+# Budoucí lokální nastavení
+api/config.local.php
