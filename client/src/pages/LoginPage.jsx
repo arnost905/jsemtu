@@ -1,4 +1,5 @@
 import { useState } from "react";
+import API_URL from "../config";
 
 function LoginPage({ onLogin }) {
   const [username, setUsername] = useState("");
@@ -8,21 +9,9 @@ function LoginPage({ onLogin }) {
     e.preventDefault();
 
     // Demo na Vercelu
-    if (window.location.hostname !== "localhost") {
-      if (username === "demo" && password === "demo") {
-        onLogin({
-          id: 99,
-          name: "Demo účet",
-          role: "employee",
-        });
-      } else {
-        alert("Pro demo použij přihlášení demo / demo");
-      }
-      return;
-    }
 
     // Lokální vývoj s PHP
-    fetch("http://localhost/JsemTu/api/login.php", {
+    fetch(`${API_URL}/login.php`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

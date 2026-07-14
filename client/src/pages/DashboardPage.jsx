@@ -149,7 +149,7 @@ function DashboardPage({ currentUser, onLogout }) {
       />
       <footer className="app-footer">
         <small>
-          JsemTu <strong>v1.0-alfa</strong>
+          JsemTu <strong>v1.0-beta</strong>
           <br />© 2026 Karel Půček
           <br />
           💡{" "}
