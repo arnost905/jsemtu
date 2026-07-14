@@ -146,7 +146,15 @@ function DashboardPage({ currentUser, onLogout }) {
 
   function sendReport() {
     fetch(`${API_URL}/send_report.php`)
-      .then((response) => response.json())
+      .then(async (response) => {
+        console.log("Status:", response.status);
+
+        const text = await response.text();
+
+        console.log("Odpověď:", text);
+
+        return JSON.parse(text);
+      })
       .then((result) => {
         if (result.success) {
           alert("✅ Denní přehled byl úspěšně odeslán.");
@@ -156,7 +164,7 @@ function DashboardPage({ currentUser, onLogout }) {
       })
       .catch((error) => {
         console.error(error);
-        alert("❌ Nepodařilo se spojit se serverem.");
+        alert(error.message);
       });
   }
 
