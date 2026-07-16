@@ -1,0 +1,192 @@
+[
+  {
+    "id": 1,
+    "name": "Karel",
+    "hours": [
+      "off",
+      "work",
+      "work",
+      "work",
+      "work",
+      "work",
+      "work",
+      "work",
+      "work",
+      "off",
+      "off",
+      "off",
+      "off"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Pavel",
+    "hours": [
+      "off",
+      "work",
+      "work",
+      "work",
+      "work",
+      "work",
+      "work",
+      "work",
+      "work",
+      "off",
+      "off",
+      "off",
+      "off"
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Jiří",
+    "hours": [
+      "off",
+      "work",
+      "work",
+      "work",
+      "work",
+      "work",
+      "work",
+      "work",
+      "work",
+      "off",
+      "off",
+      "off",
+      "off"
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Pavlína",
+    "hours": [
+      "off",
+      "work",
+      "work",
+      "work",
+      "work",
+      "work",
+      "work",
+      "work",
+      "work",
+      "off",
+      "off",
+      "off",
+      "off"
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Marta",
+    "hours": [
+      "off",
+      "work",
+      "work",
+      "work",
+      "work",
+      "work",
+      "work",
+      "work",
+      "work",
+      "off",
+      "off",
+      "off",
+      "off"
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Martin",
+    "hours": [
+      "off",
+      "work",
+      "work",
+      "work",
+      "work",
+      "work",
+      "work",
+      "work",
+      "work",
+      "off",
+      "off",
+      "off",
+      "off"
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Vendula",
+    "hours": [
+      "off",
+      "work",
+      "work",
+      "work",
+      "work",
+      "work",
+      "work",
+      "work",
+      "work",
+      "off",
+      "off",
+      "off",
+      "off"
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Ondřej",
+    "hours": [
+      "off",
+      "work",
+      "work",
+      "work",
+      "work",
+      "work",
+      "work",
+      "work",
+      "work",
+      "off",
+      "off",
+      "off",
+      "off"
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Recepce",
+    "hours": [
+      "off",
+      "work",
+      "work",
+      "work",
+      "work",
+      "work",
+      "work",
+      "work",
+      "work",
+      "off",
+      "off",
+      "off",
+      "off"
+    ]
+  },
+  {
+    "id": 99,
+    "name": "Demo účet",
+    "hours": [
+      "off",
+      "work",
+      "work",
+      "work",
+      "work",
+      "work",
+      "work",
+      "work",
+      "work",
+      "off",
+      "off",
+      "off",
+      "off"
+    ]
+  }
+]

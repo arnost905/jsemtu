@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 400 400"
+     width="400" height="400">
+  <defs>
+    <mask id="m">
+      <rect width="400" height="400" fill="black"/>
+      <circle cx="200" cy="200" r="180" fill="white"/>
+    </mask>
+  </defs>
+
+  <!-- všechno navy se vykreslí jen tam, kde maska dovolí (tj. do kruhu) -->
+  <g mask="url(#m)">
+    <rect width="400" height="400" fill="navy"/>
+  </g>
+
+  <polygon fill="white"
+    points="200,63.3 230.7,157.8 330,157.8 249.7,216.1 280.3,310.6 200,252.2 119.7,310.6 150.3,216.1 70,157.8 169.3,157.8"/>
+</svg>

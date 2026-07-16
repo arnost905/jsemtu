@@ -29,3 +29,14 @@
 
   color: #64748b;
 }
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.app-logo {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+}

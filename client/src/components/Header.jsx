@@ -1,16 +1,14 @@
-import StatusCircle from "./StatusCircle";
 import "../styles/Header.css";
 
 function Header() {
   return (
     <header className="app-header">
       <div className="logo">
-        <StatusCircle status="work" size={20} />
+        <img src="/kulate-bonyblu.svg" alt="JsemTu" className="app-logo" />
 
         <div>
           <h1>JsemTu</h1>
-          <p>Přehled dostupnosti týmu</p>
-          <p>👆 Ťapej na kolečko zaměstnance pro změnu stavu</p>
+          <p>Přehled prezence</p>
         </div>
       </div>
     </header>

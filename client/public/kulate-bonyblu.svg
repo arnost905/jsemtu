@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<circle cx="200" cy="200" r="180" stroke="navy" fill="navy" stroke-width="0"/>
+  <!-- Vycentrovaná bílá 5-cípá hvězda (šířka 260px = 65% ze 400px) -->
+  <polygon points="200,63.3 230.7,157.8 330,157.8 249.7,216.1 280.3,310.6 200,252.2 119.7,310.6 150.3,216.1 70,157.8 169.3,157.8" fill="white" />
+</svg>

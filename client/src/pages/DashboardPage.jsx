@@ -222,8 +222,8 @@ function DashboardPage({ currentUser, onLogout }) {
           JsemTu <strong>v1.0-beta</strong>
           <br />© 2026 Karel Půček
           <br />
-          💡{" "}
-          <a href="mailto:arnost905@gmail.com">
+          <p>👆 Ťapej na kolečko zaměstnance pro změnu stavu</p>
+          <a href="mailto:karel.pucek@centrum.cz">
             Pošli prosím Tě připomínky a návrhy na vylepšení.
           </a>
         </small>
