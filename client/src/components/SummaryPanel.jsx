@@ -1,6 +1,8 @@
 import StatusCircle from "./StatusCircle";
 import "../styles/SummaryPanel.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import DaySelectorModal from "./DaySelectorModal";
+import HourSelectorModal from "./HourSelectorModal";
 
 const items = [
   { key: "all", label: "Všichni" },
@@ -19,31 +21,22 @@ function SummaryPanel({
   onFilterChange,
   selectedHour,
   setSelectedHour,
+  currentDay,
+  workingDays,
+  setSelectedDate,
 }) {
   const [editingHour, setEditingHour] = useState(false);
-
+  const [editingDay, setEditingDay] = useState(false);
   return (
     <>
       <div className="summary-header">
         <span className="fw-bold">Stav k : </span>
-
-        {editingHour ? (
-          <div className="hour-selector">
-            <button onClick={() => setSelectedHour((h) => Math.max(0, h - 1))}>
-              ◀
-            </button>
-
-            <strong>{selectedHour}:00</strong>
-
-            <button onClick={() => setSelectedHour((h) => Math.min(23, h + 1))}>
-              ▶
-            </button>
-          </div>
-        ) : (
-          <button className="hour-display" onClick={() => setEditingHour(true)}>
-            {selectedHour}:00
-          </button>
-        )}
+        <button className="day-display" onClick={() => setEditingDay(true)}>
+          📅 {currentDay?.label}
+        </button>
+        <button className="hour-display" onClick={() => setEditingHour(true)}>
+          🕒 {selectedHour}:00
+        </button>
       </div>
 
       <div className="dashboard-summary">
@@ -70,6 +63,26 @@ function SummaryPanel({
           </div>
         ))}
       </div>
+      <DaySelectorModal
+        show={editingDay}
+        workingDays={workingDays}
+        currentDay={currentDay}
+        onClose={() => setEditingDay(false)}
+        onSelect={(day) => {
+          setSelectedDate(day.date);
+          setEditingDay(false);
+        }}
+      />
+
+      <HourSelectorModal
+        show={editingHour}
+        selectedHour={selectedHour}
+        onClose={() => setEditingHour(false)}
+        onSelect={(hour) => {
+          setSelectedHour(hour);
+          setEditingHour(false);
+        }}
+      />
     </>
   );
 }

@@ -2,6 +2,9 @@ import StatusCircle from "./StatusCircle";
 import "../styles/EmployeeRow.css";
 //import { useState } from "react";
 import HourPanel from "./HourPanel";
+import { useState } from "react";
+import StatusBubble from "./StatusBubble";
+import { STATUS_ORDER, STATUS_LABELS } from "../constants/statuses";
 
 function EmployeeRow({
   employee,
@@ -11,7 +14,7 @@ function EmployeeRow({
   expanded,
   onToggle,
 }) {
-  //const [expanded, setExpanded] = useState(false);
+  const [bubble, setBubble] = useState(null);
 
   // Zatím vezmeme stav z první hodiny směny
   const index = currentHour - 7;
@@ -22,6 +25,14 @@ function EmployeeRow({
     currentUser.role === "admin" ||
     currentUser.role === "manager" ||
     currentUser.id === employee.id;
+
+  function showBubble(message) {
+    setBubble(message);
+
+    setTimeout(() => {
+      setBubble(null);
+    }, 1500);
+  }
   return (
     <>
       <div
@@ -32,6 +43,9 @@ function EmployeeRow({
           <span className="expand-icon">▶</span>
 
           <span className="employee-name">{employee.name}</span>
+          {bubble && (
+            <StatusBubble message={bubble} onClose={() => setBubble(null)} />
+          )}
         </div>
 
         <StatusCircle status={currentStatus} size={34} />
@@ -42,7 +56,17 @@ function EmployeeRow({
         expanded={expanded}
         onHourClick={
           canEdit
-            ? (hourIndex) => onHourClick(employee.id, hourIndex)
+            ? (hourIndex) => {
+                const current = employee.hours[hourIndex];
+
+                const next =
+                  STATUS_ORDER[
+                    (STATUS_ORDER.indexOf(current) + 1) % STATUS_ORDER.length
+                  ];
+
+                showBubble(STATUS_LABELS[next]);
+                onHourClick(employee.id, hourIndex);
+              }
             : undefined
         }
       />

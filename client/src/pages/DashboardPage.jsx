@@ -5,13 +5,22 @@ import Header from "../components/Header";
 import SummaryPanel from "../components/SummaryPanel";
 import EmployeeList from "../components/EmployeeList";
 import API_URL from "../config";
+import StatusToast from "../components/StatusToast";
+import { STATUS_ORDER, STATUS_LABELS } from "../constants/statuses";
+import { getWorkingDays } from "../utils/workingDays";
 
 function DashboardPage({ currentUser, onLogout }) {
   const [employeeList, setEmployeeList] = useState([]);
   const [expandedEmployee, setExpandedEmployee] = useState(null);
   const [filter, setFilter] = useState("all");
   const [selectedHour, setSelectedHour] = useState(new Date().getHours());
-  const [warning, setWarning] = useState("");
+  const [toast, setToast] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
+  const [workingDays, setWorkingDays] = useState(() => getWorkingDays());
+  const currentDay = workingDays.find(
+    (day) => day.iso === selectedDate.toISOString().split("T")[0],
+  );
 
   function loadEmployees() {
     fetch(`${API_URL}/employees.php`)
@@ -82,15 +91,6 @@ function DashboardPage({ currentUser, onLogout }) {
       : employeeList.filter(
           (employee) => getCurrentStatus(employee, selectedHour) === filter,
         );
-  const STATUS_ORDER = [
-    "work",
-    "doctor",
-    "holiday",
-    "sickness",
-    "family",
-    "businessTrip",
-    "off",
-  ];
 
   function countHours(hours) {
     return hours.filter((status) => status !== "off").length;
@@ -119,16 +119,13 @@ function DashboardPage({ currentUser, onLogout }) {
         const currentIndex = STATUS_ORDER.indexOf(newHours[hourIndex]);
         const nextIndex = (currentIndex + 1) % STATUS_ORDER.length;
 
-        newHours[hourIndex] = STATUS_ORDER[nextIndex];
+        const newStatus = STATUS_ORDER[nextIndex];
+        newHours[hourIndex] = newStatus;
 
         const totalHours = countHours(newHours);
 
         if (totalHours > 8) {
-          setWarning(`⚠ ${employee.name} má zadáno ${totalHours} hodin.`);
-
-          setTimeout(() => {
-            setWarning("");
-          }, 3000);
+          setToast(`⚠ ${employee.name} má zadáno ${totalHours} hodin.`);
         }
 
         return {
@@ -168,18 +165,21 @@ function DashboardPage({ currentUser, onLogout }) {
       });
   }
 
+  function downloadReport() {
+    window.open(`${API_URL}/download_report.php`, "_blank");
+  }
+
   const roleNames = {
     admin: "Administrátor",
     manager: "Vedoucí",
     employee: "Zaměstnanec",
     viewer: "Pouze náhled",
   };
+
   return (
     <div className="dashboard">
       <Header />
-      {warning && (
-        <div className="alert alert-warning text-center">{warning}</div>
-      )}
+
       <div className="d-flex justify-content-between align-items-center mb-3">
         <div>
           👤 <strong>{currentUser.name} ● </strong>
@@ -188,8 +188,8 @@ function DashboardPage({ currentUser, onLogout }) {
 
         <div className="d-flex gap-2">
           {(currentUser.role === "admin" || currentUser.role === "manager") && (
-            <button className="btn btn-success btn-sm" onClick={sendReport}>
-              📧 Odeslat denní přehled
+            <button className="btn btn-success btn-sm" onClick={downloadReport}>
+              📥 Stáhnout přehled
             </button>
           )}
 
@@ -207,6 +207,9 @@ function DashboardPage({ currentUser, onLogout }) {
         onFilterChange={setFilter}
         selectedHour={selectedHour}
         setSelectedHour={setSelectedHour}
+        currentDay={currentDay}
+        workingDays={workingDays}
+        setSelectedDate={setSelectedDate}
       />
 
       <EmployeeList
@@ -217,9 +220,11 @@ function DashboardPage({ currentUser, onLogout }) {
         expandedEmployee={expandedEmployee}
         setExpandedEmployee={setExpandedEmployee}
       />
+
+      {toast && <StatusToast message={toast} onClose={() => setToast(null)} />}
       <footer className="app-footer">
         <small>
-          JsemTu <strong>v1.0-beta</strong>
+          JsemTu <strong>v0.2.0</strong>
           <br />© 2026 Karel Půček
           <br />
           <p>👆 Ťapej na kolečko zaměstnance pro změnu stavu</p>

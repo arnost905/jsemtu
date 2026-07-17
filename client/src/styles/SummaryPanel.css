@@ -27,3 +27,24 @@
 .hour-display:hover {
   background: #f8fafc;
 }
+
+.day-display,
+.hour-display {
+  border: none;
+  background: #f5f5f5;
+  border-radius: 12px;
+  padding: 8px 14px;
+  font-weight: 600;
+  transition: 0.15s;
+}
+
+.day-display:hover,
+.hour-display:hover {
+  background: #e9ecef;
+}
+.summary-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}

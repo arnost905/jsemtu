@@ -1,6 +1,7 @@
-const API_URL =
-  window.location.hostname === "localhost"
-    ? "http://localhost/JsemTu/api"
-    : "https://jskod.cz/jsemtu/api";
+const isProduction = window.location.hostname === "jskod.cz";
+
+const API_URL = isProduction
+  ? "https://jskod.cz/jsemtu/api"
+  : `http://${window.location.hostname}/JsemTu/api`;
 
 export default API_URL;

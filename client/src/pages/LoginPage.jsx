@@ -1,5 +1,7 @@
 import { useState } from "react";
 import API_URL from "../config";
+import "../styles/LoginPage.css";
+import AppBrand from "../components/AppBrand";
 
 function LoginPage({ onLogin }) {
   const [username, setUsername] = useState("");
@@ -24,6 +26,8 @@ function LoginPage({ onLogin }) {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
+          localStorage.setItem("currentUser", JSON.stringify(data.user));
+
           onLogin(data.user);
         } else {
           alert(data.message);
@@ -39,7 +43,7 @@ function LoginPage({ onLogin }) {
     <div className="container py-5">
       <div className="card mx-auto" style={{ maxWidth: "420px" }}>
         <div className="card-body">
-          <h2 className="text-center mb-4">JsemTu</h2>
+          <AppBrand />
 
           <form onSubmit={handleLogin}>
             <div className="mb-3">

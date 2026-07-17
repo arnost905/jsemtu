@@ -1,18 +1,10 @@
+import AppBrand from "./AppBrand";
 import "../styles/Header.css";
 
-function Header() {
+export default function Header() {
   return (
     <header className="app-header">
-      <div className="logo">
-        <img src="/kulate-bonyblu.svg" alt="JsemTu" className="app-logo" />
-
-        <div>
-          <h1>JsemTu</h1>
-          <p>Přehled prezence</p>
-        </div>
-      </div>
+      <AppBrand />
     </header>
   );
 }
-
-export default Header;

@@ -1,0 +1,18 @@
+.login-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-align: left;
+}
+
+.login-logo h2 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.login-logo p {
+  margin: 0;
+  color: #6c757d;
+  font-size: 0.95rem;
+}
