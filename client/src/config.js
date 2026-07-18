@@ -1,7 +1,3 @@
-const isProduction = window.location.hostname === "jskod.cz";
-
-const API_URL = isProduction
-  ? "https://jskod.cz/jsemtu/api"
-  : `http://${window.location.hostname}/JsemTu/api`;
+const API_URL = `${window.location.protocol}//${window.location.host}/JsemTu/api`;
 
 export default API_URL;
